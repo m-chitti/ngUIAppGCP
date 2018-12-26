@@ -2,6 +2,13 @@
 # $ gcloud builds submit . --config=cloudbuild.yaml
 
 steps:
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install','-g','@angular/cli@1.7.4' ]
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+
 # Build all supported versions.
 - name: 'gcr.io/cloud-builders/npm'
   args:
@@ -50,15 +57,6 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/npm:node-10.10.0'
   args: ['version']
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install','-g','@angular/cli@1.7.4' ]
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run','ng','build']
-  
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["config", "set", "project", 'nguiapp-gcp']
 - name: "gcr.io/cloud-builders/gcloud"
