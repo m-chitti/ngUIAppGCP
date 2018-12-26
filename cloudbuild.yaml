@@ -1,7 +1,7 @@
 steps:
 # Install Angular
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['install','-g','@angular/cli@1.7.4' ]
+  args: ['install','-g','@angular/cli@6.0.7' ]
 # Install Dependencies
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
@@ -11,7 +11,7 @@ steps:
 
 # Select the project for the app to be deployed
 - name: "gcr.io/cloud-builders/gcloud"
-  args: ["config", "set", "project", "angular1-224619"]
+  args: ["config", "set", "project", "nguiapp-gcp"]
 # deploy in App Engine
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
