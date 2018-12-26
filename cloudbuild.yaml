@@ -3,13 +3,13 @@
 
 steps:
 # Build all supported versions.
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/npm'
   args:
   - 'build'
   - '--build-arg=NODE_VERSION=6.14.4'
   - '--tag=gcr.io/$PROJECT_ID/npm:node-6.14.4'
   - '.'
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/npm'
   args:
   - 'build'
   - '--build-arg=NODE_VERSION=8.12.0'
@@ -17,19 +17,19 @@ steps:
   # 8.12.0 is tagged :latest
   - '--tag=gcr.io/$PROJECT_ID/npm:latest'
   - '.'
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/npm'
   args:
   - 'build'
   - '--build-arg=NODE_VERSION=8.4.0'
   - '--tag=gcr.io/$PROJECT_ID/npm:node-8.4.0'
   - '.'
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/npm'
   args:
   - 'build'
   - '--build-arg=NODE_VERSION=9.11.2'
   - '--tag=gcr.io/$PROJECT_ID/npm:node-9.11.2'
   - '.'
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/npm'
   args:
   - 'build'
   - '--build-arg=NODE_VERSION=10.10.0'
@@ -50,6 +50,15 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/npm:node-10.10.0'
   args: ['version']
 
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install','-g','@angular/cli@1.7.4' ]
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run','ng','build']
+  
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["config", "set", "project", 'nguiapp-gcp']
 - name: "gcr.io/cloud-builders/gcloud"
